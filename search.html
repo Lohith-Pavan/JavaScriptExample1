@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <table>
+    <thead>
+      <tr>
+        <td>EmpId : </td>
+        <td><input type="text" id="empId"></td>
+        <td>FirstName :</td>
+        <td><input type="text" id="firstName"></td>
+      </tr>
+      <tr>
+        <td>LastName : </td>
+        <td><input type="text" id="lastName"></td>
+        <td>Designation :</td>
+        <td><input type="text" id="designation"></td>
+      </tr>
+      <tr>
+        <td>Age : </td>
+        <td><input type="text" id="age"></td>
+        <td>phoneNumber :</td>
+        <td><input type="text" id="phoneNumber"></td>
+      </tr>
+      <tr>
+        <td>email : </td>
+        <td><input type="text" id="email"></td>
+        <td></td>
+        <td><button onclick="doSearch()">submit</button></td>
+      </tr>
+    </thead>
+  </table>
+  <div id="empListTable"></div>
+  <!--
+  <table border>
+    <thead>
+      <tr>
+        <td>EmpId</td>
+        <td>FirstName</td>
+        <td>LastName</td>
+        <td>Designation</td>
+        <td>Age</td>
+        <td>Salary</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>TMF1001</td>
+        <td>Lohith</td>
+        <td>Pavan</td>
+        <td>Web developer associate</td>
+        <td>21</td>
+        <td>35000</td>
+      </tr>
+      <tr>
+        <td>TMF1002</td>
+        <td>Abhi</td>
+        <td>Ram</td>
+        <td>Data analyst</td>
+        <td>23</td>
+        <td>25000</td>
+      </tr>
+      <tr>
+        <td>TMF1003</td>
+        <td>Ram</td>
+        <td>Charan</td>
+        <td>software trainee</td>
+        <td>22</td>
+        <td>15000</td>
+      </tr>
+    </tbody>
+  </table> -->
+  <script>
+    var emp1 = {
+      empId: "TMF1001",
+      firstName: "Lohith",
+      lastName: "Pavan",
+      designation: "software developer",
+      age: 21,
+      phoneNumber: 502475092850,
+      email: "lohith@123"
+    }
+    var emp2 = {
+      empId: "TMF1002",
+      firstName: "Ram",
+      lastName: "Charan",
+      designation: "software trainee",
+      age: 22,
+      phoneNumber: 40327423230,
+      email: "lohithpavan@123"
+    }
+    var emp3 = {
+      empId: "TMF1003",
+      firstName: "deru",
+      lastName: "bhai",
+      designation: "software tester",
+      age: 48,
+      phoneNumber: 23057230984,
+      email: "derubhai@123"
+    }
+    var empList = [emp1, emp2, emp3];
+    function doSearch() {
+      var empId = document.getElementById("empId").value;
+      var empAge = document.getElementById("age").value;
+      for (i = 0; i < empList.length; i++) {
+        if (empId == empList[i].empId) {
+          alert(empList[i].firstName + "::" + empList[i].lastName);
+        }
+        if (empList[i].empId.includes(empId)) {
+          alert(empList[i].firstName + "::" + empList[i].lastName);
+        }
+      }
+    }
+    var tableDiv = document.getElementById("empListTable");
+    var empTable = document.createElement("table");
+    empTable.setAttribute("border","1");
+    var empTr = document.createElement("tr");
+    
+    for(i=0;i<empList.length;i++){
+      var empTr = document.createElement("tr");
+      var empObj = empList[i];
+      var empPropList = Object.keys(empObj);
+      for(j=0;j<empPropList.length;j++){
+        var empTd = document.createElement("td");
+        empTd.innerText = empObj[empPropList[j]];
+        empTr.appendChild(empTd);
+      }
+      empTable.appendChild(empTr);
+    }
+    tableDiv.appendChild(empTable);
+</script>
+</html>

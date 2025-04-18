@@ -1,0 +1,44 @@
+<html>
+
+<head>
+
+<body>
+  <h1>document.getElementById Examples</h1>
+  <h3>1. Change Text Size</h3>
+  <p id="text">Make me big!</p>
+  <button onclick="document.getElementById('text').style.fontSize='35px'">Change Text</button>
+  <button onclick="document.getElementById('text').style.fontSize='16px'">Change Text</button>
+  <hr>
+  <h3>Change Text Color</h3>
+  <p id="color">Color me!</p>
+  <button onclick="document.getElementById('color').style.color='red'">Red Text</button>
+  <button onclick="document.getElementById('color').style.color='black'">Original Text</button>
+  <hr>
+  <h3>Hide and Show Elements</h3>
+  <p id="hidden">I will disappear!</p>
+  <button onclick="document.getElementById('hidden').style.display='none'">Hide</button>
+  <button onclick="document.getElementById('hidden').style.display='block'">Show</button>
+  <hr>
+  <h3>Enable/Disable Button</h3>
+  <button id='Enable' disabled>Can't click me</button>
+  <button onclick="document.getElementById('Enable').disabled=false">Enable</button>
+  <button onclick="document.getElementById('Enable').disabled=true">Disable</button>
+  <hr>
+  <h3>Read Input Value</h3>
+  <input id='input' type="text">
+  <button onclick="document.getElementById('output').innerHTML = document.getElementById('input').value">Show
+    Name</button>
+  <p id="output"></p>
+  <hr>
+  <h3>Change Multiple Styles</h3>
+  <p id="style">Style me up?</p>
+  <button onclick="document.getElementById('style').style.fontSize='25px';
+  document.getElementById('style').style.color='Brown';
+  document.getElementById('style').style.backgroundColor='black'">Style!</button>
+  <h3>Do Simple Math</h3>
+  <p id="number"></p>
+  <button onclick="document.getElementById('number').innerHTML=5+10">Add Numbers</button>
+</body>
+</head>
+
+</html>
