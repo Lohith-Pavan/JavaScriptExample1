@@ -32,107 +32,150 @@
         <td>email : </td>
         <td><input type="text" id="email"></td>
         <td></td>
-        <td><button onclick="doSearch()">submit</button></td>
+        <td><button onclick="designationSearch(empList)">Search</button></td>
       </tr>
     </thead>
   </table>
   <div id="empListTable"></div>
-  <!--
-  <table border>
-    <thead>
-      <tr>
-        <td>EmpId</td>
-        <td>FirstName</td>
-        <td>LastName</td>
-        <td>Designation</td>
-        <td>Age</td>
-        <td>Salary</td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>TMF1001</td>
-        <td>Lohith</td>
-        <td>Pavan</td>
-        <td>Web developer associate</td>
-        <td>21</td>
-        <td>35000</td>
-      </tr>
-      <tr>
-        <td>TMF1002</td>
-        <td>Abhi</td>
-        <td>Ram</td>
-        <td>Data analyst</td>
-        <td>23</td>
-        <td>25000</td>
-      </tr>
-      <tr>
-        <td>TMF1003</td>
-        <td>Ram</td>
-        <td>Charan</td>
-        <td>software trainee</td>
-        <td>22</td>
-        <td>15000</td>
-      </tr>
-    </tbody>
-  </table> -->
   <script>
-    var emp1 = {
-      empId: "TMF1001",
-      firstName: "Lohith",
-      lastName: "Pavan",
-      designation: "software developer",
-      age: 21,
-      phoneNumber: 502475092850,
-      email: "lohith@123"
+    // var emp1 = {
+    //   empId: "TMF1001",
+    //   firstName: "Lohith",
+    //   lastName: "Pavan",
+    //   designation: "software developer",
+    //   age: 21,
+    //   phoneNumber: 502475092850,
+    //   email: "lohith@123"
+    // }
+    // var emp2 = {
+    //   empId: "TMF1002",
+    //   firstName: "Ram",
+    //   lastName: "Charan",
+    //   designation: "software trainee",
+    //   age: 22,
+    //   phoneNumber: 40327423230,
+    //   email: "lohithpavan@123"
+    // }
+    // var emp3 = {
+    //   empId: "TMF1003",
+    //   firstName: "deru",
+    //   lastName: "bhai",
+    //   designation: "software tester",
+    //   age: 48,
+    //   phoneNumber: 23057230984,
+    //   email: "derubhai@123"
+    // }
+    // var empList = [emp1, emp2, emp3];
+    var empArrList = [["TMF1001", "Lohith", "Pavan", "Developer", 21, 95029348750, "lohith@gmail.com"],
+    ["TMF1002", "Mahesh", "Babu", "Tester", 22, 5027509238, "mahesh@gmail.com"],
+    ["TMF1003", "Ram", "Charan", "Developer", 25, 62345234534, "ram@gmail.com"],
+    ["TMF1004", "Sallu", "Bhai", "Manager", 45, 502934785, "sallu@gmail.com"],
+    ["TMF1005", "Prabhas", "Raju", "Lead", 31, 523463534523, "prabhas@gmail.com"],
+    ["TMF1006", "Nitesh", "Kumar", "Tester", 24, 53948753045, "nitesh@gmail.com"],
+    ["TMF1007", "Banveer", "Singht", "Developer", 34, 835624356234, "banveer@gmail.com"],
+    ["TMF1008", "Rohith", "Sharma", "Developer", 32, 9647456234, "rohith@gmail.com"],
+    ["TMF1009", "Virat", "Kohli", "Tester", 27, 8546345234, "virat@gmail.com"],
+    ["TMF1010", "Arjun", "Reddy", "Developer", 34, 76234523434, "arjun@gmail.com"],
+    ];
+    var empList = [];
+    for (i = 0; i < empArrList.length; i++) {
+      var empObj = {};
+      empObj.empId = empArrList[i][0];
+      empObj.firstName = empArrList[i][1];
+      empObj.lastName = empArrList[i][2];
+      empObj.designation = empArrList[i][3];
+      empObj.age = empArrList[i][4];
+      empObj.phNo = empArrList[i][5];
+      empObj.email = empArrList[i][6];
+      empList[i] = empObj;
     }
-    var emp2 = {
-      empId: "TMF1002",
-      firstName: "Ram",
-      lastName: "Charan",
-      designation: "software trainee",
-      age: 22,
-      phoneNumber: 40327423230,
-      email: "lohithpavan@123"
+    function noRecords() {
+      var tableDiv = document.getElementById("empListTable");
+      var empTable = document.createElement("table");
+      empTable.setAttribute("border", "1");
+      var tableHead = ["Emp Id", "First Name", "Last Name", "Designation", "Age", "Phone Number", "Email"];
+      var tableHeadTr = document.createElement("tr");
+      for (i = 0; i < tableHead.length; i++) {
+        var empTh = document.createElement("th");
+        empTh.innerHTML = tableHead[i];
+        tableHeadTr.appendChild(empTh);
+      }
+      empTable.appendChild(tableHeadTr);
+      tableDiv.appendChild(empTable);
     }
-    var emp3 = {
-      empId: "TMF1003",
-      firstName: "deru",
-      lastName: "bhai",
-      designation: "software tester",
-      age: 48,
-      phoneNumber: 23057230984,
-      email: "derubhai@123"
-    }
-    var empList = [emp1, emp2, emp3];
-    function doSearch() {
-      var empId = document.getElementById("empId").value;
-      var empAge = document.getElementById("age").value;
+    function designationSearch(empList) {
+      var designationSearchTxt = document.getElementById("designation").value;
+      var tableDiv = document.getElementById("empListTable");
+      var empTable = document.createElement("table");
+      empTable.setAttribute("border", "1");
+      var tableHead = ["Emp Id", "First Name", "Last Name", "Designation", "Age", "Phone Number", "Email"];
+      var tableHeadTr = document.createElement("tr");
+      for (i = 0; i < tableHead.length; i++) {
+        var empTh = document.createElement("th");
+        empTh.innerHTML = tableHead[i];
+        tableHeadTr.appendChild(empTh);
+      }
+      empTable.appendChild(tableHeadTr);
       for (i = 0; i < empList.length; i++) {
-        if (empId == empList[i].empId) {
-          alert(empList[i].firstName + "::" + empList[i].lastName);
+        var empTr = document.createElement("tr");
+        var empObj = empList[i];
+        if (designationSearchTxt == empObj.designation) {
+          var empPropList = Object.keys(empObj);
+          for (j = 0; j < empPropList.length; j++) {
+            var empTd = document.createElement("td");
+            empTd.innerText = empObj[empPropList[j]];
+            empTr.appendChild(empTd);
+          }
+          empTable.appendChild(empTr);
         }
-        if (empList[i].empId.includes(empId)) {
-          alert(empList[i].firstName + "::" + empList[i].lastName);
+        else {
+          var empTd = document.createElement("td");
+          empTd.innerHTML = "NO RECORDS FOUND";
+          empTd.setAttribute("colspan", "7");
+          empTd.style.textAlign = "center";
+          empTr.appendChild(empTd);
+          empTable.appendChild(empTr);
         }
       }
+      tableDiv.appendChild(empTable);
     }
-    var tableDiv = document.getElementById("empListTable");
-    var empTable = document.createElement("table");
-    empTable.setAttribute("border","1");
-    var empTr = document.createElement("tr");
-    
-    for(i=0;i<empList.length;i++){
-      var empTr = document.createElement("tr");
-      var empObj = empList[i];
-      var empPropList = Object.keys(empObj);
-      for(j=0;j<empPropList.length;j++){
-        var empTd = document.createElement("td");
-        empTd.innerText = empObj[empPropList[j]];
-        empTr.appendChild(empTd);
-      }
-      empTable.appendChild(empTr);
-    }
-    tableDiv.appendChild(empTable);
-</script>
+
+    // function doSearch() {
+    //   var empId = document.getElementById("empId").value;
+    //   var empAge = document.getElementById("age").value;
+    //   for (i = 0; i < empList.length; i++) {
+    //     if (empId == empList[i].empId) {
+    //       alert(empList[i].firstName + "::" + empList[i].lastName);
+    //     }
+    //     if (empList[i].empId.includes(empId)) {
+    //       alert(empList[i].firstName + "::" + empList[i].lastName);
+    //     }
+    //   }
+    // }
+
+    // var tableDiv = document.getElementById("empListTable");
+    // var empTable = document.createElement("table");
+    // empTable.setAttribute("border", "1");
+    // var tableHead = ["Emp Id", "First Name", "Last Name", "Designation", "Age", "Phone Number", "Email"];
+    // var tableHeadTr = document.createElement("tr");
+    // for (i = 0; i < tableHead.length; i++) {
+    //   var empTh = document.createElement("th");
+    //   empTh.innerHTML = tableHead[i];
+    //   tableHeadTr.appendChild(empTh);
+    // }
+    // empTable.appendChild(tableHeadTr);
+    // for (i = 0; i < empList.length; i++) {
+    //   var empTr = document.createElement("tr");
+    //   var empObj = empList[i];
+    //   var empPropList = Object.keys(empObj);
+    //   for (j = 0; j < empPropList.length; j++) {
+    //     var empTd = document.createElement("td");
+    //     empTd.innerText = empObj[empPropList[j]];
+    //     empTr.appendChild(empTd);
+    //   }
+    //   empTable.appendChild(empTr);
+    // }
+    // tableDiv.appendChild(empTable);
+  </script>
+
 </html>
