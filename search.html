@@ -89,37 +89,28 @@
       empObj.email = empArrList[i][6];
       empList[i] = empObj;
     }
-    function noRecords() {
-      var tableDiv = document.getElementById("empListTable");
-      var empTable = document.createElement("table");
-      empTable.setAttribute("border", "1");
-      var tableHead = ["Emp Id", "First Name", "Last Name", "Designation", "Age", "Phone Number", "Email"];
-      var tableHeadTr = document.createElement("tr");
-      for (i = 0; i < tableHead.length; i++) {
-        var empTh = document.createElement("th");
-        empTh.innerHTML = tableHead[i];
-        tableHeadTr.appendChild(empTh);
-      }
-      empTable.appendChild(tableHeadTr);
-      tableDiv.appendChild(empTable);
-    }
     function designationSearch(empList) {
-      var designationSearchTxt = document.getElementById("designation").value;
+      var designationSearchTxt = document.getElementById("designation").value.trim().toLowerCase();
       var tableDiv = document.getElementById("empListTable");
       var empTable = document.createElement("table");
       empTable.setAttribute("border", "1");
       var tableHead = ["Emp Id", "First Name", "Last Name", "Designation", "Age", "Phone Number", "Email"];
       var tableHeadTr = document.createElement("tr");
-      for (i = 0; i < tableHead.length; i++) {
+      // for (i = 0; i < tableHead.length; i++) {
+      //   var empTh = document.createElement("th");
+      //   empTh.innerHTML = tableHead[i];
+      //   tableHeadTr.appendChild(empTh);
+      // }
+      tableHead.forEach(function(value){
         var empTh = document.createElement("th");
-        empTh.innerHTML = tableHead[i];
+        empTh.innerHTML = value;
         tableHeadTr.appendChild(empTh);
-      }
+      });
       empTable.appendChild(tableHeadTr);
       for (i = 0; i < empList.length; i++) {
         var empTr = document.createElement("tr");
         var empObj = empList[i];
-        if (designationSearchTxt == empObj.designation) {
+        if (empObj.designation.toLowerCase().includes(designationSearchTxt)) {
           var empPropList = Object.keys(empObj);
           for (j = 0; j < empPropList.length; j++) {
             var empTd = document.createElement("td");
