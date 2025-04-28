@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td>EmpId:</td>
+        <td><input type="text" id="empId"></td>
+        <td>First Name:</td>
+        <td><input type="text" id="firstName"></td>
+      </tr>
+      <tr>
+        <td>Last Name:</td>
+        <td><input type="text" id="lastName"></td>
+        <td>Designation:</td>
+        <td><input type="text" id="designation"></td>
+      </tr>
+      <tr>
+        <td>Age:</td>
+        <td><input type="text" id="age"></td>
+        <td>Phone Number:</td>
+        <td><input type="text" id="phoneNumber"></td>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td><input type="text" id="email"></td>
+        <td colspan="2"><center><button type="button" onclick="search()">Search</button></center></td>
+      </tr>
+    </table>
+    <div id="tableDiv"></div>
+    <script>
+      let empArrList=[["TMF1001", "Lohith","Pavan", "Developer", 21, 95029348750, "lohith@gmail.com"],
+                      ["TMF1002", "Mahesh", "Babu", "Tester", 22, 5027509238, "mahesh@gmail.com"],
+                      ["TMF1003", "Ram", "Charan", "Developer", 25, 62345234534, "ram@gmail.com"],
+                      ["TMF1004", "Sallu", "Bhai", "Manager", 45, 502934785, "sallu@gmail.com"],
+                      ["TMF1005", "Prabhas", "Raju", "Lead", 31, 523463534523, "prabhas@gmail.com"],
+                      ["TMF1006", "Nitesh", "Kumar", "Tester", 24, 53948753045, "nitesh@gmail.com"],
+                      ["TMF1007", "Banveer", "Singht", "Developer", 34, 835624356234, "banveer@gmail.com"],
+                      ["TMF1008", "Rohith", "Sharma", "Developer", 32, 9647456234, "rohith@gmail.com"],
+                      ["TMF1009", "Virat", "Kohli", "Tester", 27, 8546345234, "virat@gmail.com"],
+                      ["TMF1010", "Arjun", "Reddy", "Developer", 34, 76234523434, "arjun@gmail.com"]
+                      ];
+      let empList= [];
+      let keys=["empId","firstName","lastName","designation","age","phoneNumber","email"]        
+      empArrList.forEach(function arr(arr){
+        let emp = {};
+        keys.forEach(function keys(key,index){
+          emp[key] = arr[index] !== undefined?arr[index]:null;
+        });
+        empList.push(emp);
+      });
+      console.log(empList);
+
+      function search(){
+        let tableDiv = document.getElementById("tableDiv");
+        tableDiv.innerHTML = "";
+        let table = document.createElement("table");
+        table.setAttribute("border","1");
+        table.style.borderCollapse="collapse";
+        let headers = ["EMP ID","FIRST NAME","LAST NAME","DESIGNATION","AGE","PHONE NUMBER","EMAIL"];
+        let headerRow = document.createElement("tr");
+        headers.forEach(function headers(header){
+          let td = document.createElement("td");
+          td.textContent = header;
+          headerRow.appendChild(td);
+        });
+        table.appendChild(headerRow);
+        empList.forEach((emp) => {
+          let row = document.createElement("tr");
+          Object.values(emp).forEach((value)=>{
+            let td = document.createElement("td");
+            td.textContent = value!==null?value:"N/A";
+            row.appendChild(td)
+          });
+          table.appendChild(row);
+        });
+        tableDiv.appendChild(table);
+      }   
+    </script>
+  </body>
+</html>
