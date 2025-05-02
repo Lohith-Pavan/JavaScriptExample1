@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="rootDiv"></div>
+    <script>
+        var rootDiv = document.getElementById("rootDiv");
+        var headDiv = document.createElement("div");
+        headDiv.style.display="flex";
+        headDiv.style.flexDirection="row";
+        headDiv.style.justifyContent="center";
+        headDiv.style.border = "2px solid black";
+        var h1 = document.createElement("h1");
+        h1.style.fontSize="20px";
+        h1.innerHTML = "Namaste Javascript";
+        headDiv.appendChild(h1);
+        rootDiv.appendChild(headDiv);
+    </script>
+</body>
+</html>
