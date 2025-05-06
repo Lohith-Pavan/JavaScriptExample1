@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id = "rootDiv"></div>
+    <script>
+      // var h1 = document.createElement("h1");
+      // h1.innerHTML = "Namaste Javascript";
+      // mainDiv.appendChild(h1);
+      // rootDiv.appendChild(mainDiv);
+      const h1 = React.createElement("h1",null,"Namaste Javascript");
+      const mainDiv = React.createElement("div",null,h1);
+      const root = ReactDom.createRoot(document.getElementById("rootDiv"));
+      root.render(mainDiv);
+    </script>
+</body>
+</html>
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React without JSX Example</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="rootDiv"></div>
+    <script>
+      const h1 = React.createElement("h1", null, "Namaste Javascript");
+      const mainDiv = React.createElement("div", null, h1);
+      const root = ReactDOM.createRoot(document.getElementById("rootDiv"));
+      root.render(mainDiv);
+    </script>
+  </body>
+</html> -->
